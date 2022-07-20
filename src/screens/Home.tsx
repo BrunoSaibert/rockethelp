@@ -1,4 +1,6 @@
 import { useState } from "react";
+import auth from "@react-native-firebase/auth";
+import { Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import {
   HStack,
@@ -42,6 +44,15 @@ export function Home() {
     navigation.navigate("details", { orderId });
   }
 
+  function handleLogOut() {
+    auth()
+      .signOut()
+      .catch((error) => {
+        console.log(error);
+        return Alert.alert("Sair", "Não foi possível sair.");
+      });
+  }
+
   return (
     <VStack flex={1} pb={6} bg="gray.700">
       <HStack
@@ -55,7 +66,10 @@ export function Home() {
       >
         <Logo />
 
-        <IconButton icon={<SignOut size={26} color={colors.gray[300]} />} />
+        <IconButton
+          onPress={handleLogOut}
+          icon={<SignOut size={26} color={colors.gray[300]} />}
+        />
       </HStack>
 
       <VStack flex={1} px={6}>
