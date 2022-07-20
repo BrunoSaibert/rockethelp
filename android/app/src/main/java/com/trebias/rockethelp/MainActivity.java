@@ -1,4 +1,4 @@
-package com.rockethelp;
+package com.trebias.rockethelp;
 
 import android.os.Build;
 import android.os.Bundle;
